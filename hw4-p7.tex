@@ -1,0 +1,23 @@
+\begin{enumerate}
+  \item Assume that $\domain$ is connected.
+  A function $u \in W^{1, 2}(\domain)$ is a weak solution of the Neumann problem
+  $$
+  \begin{cases}
+    -\Delta u(x) = f(x) & x \in \domain\\
+    \pderiv{u}{\nu} = 0 & x \in \bndrydom
+  \end{cases}
+  $$
+  if
+  $$
+  \int_{\domain} D u \cdot D v \dx = \int_{\domain} f v \dx, \forall v \in W^{1, 2}(\domain)
+  $$
+
+  \item Discuss how to define a weak solution of the Poisson equation with Robin boundary conditions
+  $$
+  \begin{cases}
+    -\Delta u(x) = f(x) & x \in \domain\\
+    u + \pderiv{u}{\nu} = 0 & x \in \bndrydom
+  \end{cases}
+  $$
+
+\end{enumerate}
