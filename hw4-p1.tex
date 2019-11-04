@@ -1,1 +1,23 @@
-Let $u \in C_c^\infty(\reals^n)$. Show that $|u(x_1, \ldots, x_n)| \leq \frac{1}{2} \int_{-\infty}^{\infty} |\partial_1 u(x_1, \ldots, x_n)| \dd{x_1}$.
+Let $u \in C_c^\infty(\reals^n)$.
+Show that $|u(x_1, \ldots, x_n)| \leq \frac{1}{2} \int_{-\infty}^{\infty} |\partial_1 u(x_1, \ldots, x_n)| \dd{x_1}$.
+
+Since $u \in C_c^\infty(\reals^n)$, exists $R > 0$ s.t. $u(\ball{R}{0}^C) = \pderiv{u}{x_1}(\ball{R}{0}^C) = \set{0}$.
+Then by the fundamental theorem of calculus,
+\begin{align*}
+u(x_1, x_2, \ldots, x_n) = &\int_{y=-R}^{x_1} \pderiv{u}{x_1}(y, x_2, x_3, \ldots, x_n) \dy
+  = -\int_{y=x_1}^{R} \pderiv{u}{x_1}(y, x_2, x_3, \ldots, x_n) \dy\\
+|u(x_1, x_2, \ldots, x_n)| \leq &\int_{y=-R}^{x_1} \left| \pderiv{u}{x_1}(y, x_2, x_3, \ldots, x_n) \right| \dy\\
+|u(x_1, x_2, \ldots, x_n)| \leq &\int_{y=x_1}^{R} \left| \pderiv{u}{x_1}(y, x_2, x_3, \ldots, x_n) \right| \dy
+\end{align*}
+Since both of the previous are true, we must have
+\begin{align*}
+2 |u(x_1, x_2, \ldots, x_n)|
+  \leq &2 \min \left(\int_{y=-R}^{x_1} \left| \pderiv{u}{x_1}(y, x_2, x_3, \ldots, x_n) \right| \dy,
+                     \int_{y=x_1}^{R} \left| \pderiv{u}{x_1}(y, x_2, x_3, \ldots, x_n) \right| \dy \right)\\
+  \leq& \min \left(\int_{y=-R}^{x_1} \left| \pderiv{u}{x_1}(y, x_2, x_3, \ldots, x_n) \right| \dy,
+              \int_{y=x_1}^{R} \left| \pderiv{u}{x_1}(y, x_2, x_3, \ldots, x_n) \right| \dy \right)\\
+  & + \max \left(\int_{y=-R}^{x_1} \left| \pderiv{u}{x_1}(y, x_2, x_3, \ldots, x_n) \right| \dy,
+              \int_{y=x_1}^{R} \left| \pderiv{u}{x_1}(y, x_2, x_3, \ldots, x_n) \right| \dy \right)\\
+  = &\int_{y=-\infty}^{\infty} \left| \pderiv{u}{x_1}(y, x_2, x_3, \ldots, x_n) \right| \dy
+\end{align*}
+proving the claim.

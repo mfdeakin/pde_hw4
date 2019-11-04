@@ -1,9 +1,37 @@
 Fix $\alpha > 0$, $1 < p < \infty$, and let $\domain = B_1(0)$.
 Show that there exists a constant $C$, depending on $n, p, \alpha$ s.t.
 $$
-\int_\domain u^p \dx \leq C \int_\domain |\nabla u|^p \dx
+\int_\domain u^p \dx \leq C \int_\domain |D u|^p \dx
 $$
 provided
 $$
 u \in W^{1, p}(\domain), |\set{x \in \domain | u(x) = 0}| \geq \alpha
 $$
+
+First we consider the case where $p < n$.
+Then $p \in \left[1, \frac{n p}{n - p}\right]$, so by Theorem 5.6.3 in Evans, there exists a constant $C$ s.t.
+$||u||_{L^p(\domain)} \leq C ||D u||_{L^p(\domain)}$.
+This leaves us with the cases with $p \geq n$.
+
+By Poincare's inequality, we have
+\begin{align*}
+||u - (u)_{\domain}||_{L^p(\domain)} \leq C ||D u||_{L^p(\domain)}
+\end{align*}
+
+Use BMO???
+
+By the triangle inequality, we have
+$|u|^p = |u - (u)_{\domain} + (u)_{\domain}|^p \leq (|u - (u)_{\domain}| + |(u)_{\domain}|)^p$.
+Then
+\begin{align*}
+||u||_{L^p(\domain)} \leq C ||u - (u)_{\domain}||_{L^p(\domain)}
+\end{align*}
+Since
+
+First note that since $\bndrydom \in C^1$, there exists an extension $\bar{u} \in W^{1, p}(\reals^n)$
+with $||u||_{W^{1, p}(\domain)} \leq ||\bar{u}||_{W^{1, p}(\reals)} \leq C ||u||_{W^{1, p}(\domain)}$.
+
+Then, by the Gagliardo-Nirenberg-Sobolev inequality, there exists constants $C, \bar{C}$ s.t.
+\begin{align*}
+||\bar{u}||_{L^{p}(\reals^n)} \leq \bar{C} ||D \bar{u}||_{L^{n p / (n + p)}(\reals^n)} \leq C ||D u||_{L^{n p / (n + p)}(\domain)}
+\end{align*}

@@ -1,8 +1,8 @@
 (Gagliardo-Nirenberg interpolation inequality)
-Let $n \geq 2$, $1 < p < n$, and $1 < q < r < \frac{n p}{n - p}$.
+Let $n \geq 2$, $1 < p < n$, and $1 \leq q < r < \frac{n p}{n - p}$.
 For some $\theta \in (0, 1)$ and some constant $C > 0$ we have
 $$
-||u||_{L^r(\reals^n)} \leq C ||u||_{L^q(\reals^n)}^{1 - \theta} ||\nabla u||_{L^p(\reals^n)}^{\theta}, \forall u \in C_c^\infty(\reals^n)
+||u||_{L^r(\reals^n)} \leq C ||u||_{L^q(\reals^n)}^{1 - \theta} ||D u||_{L^p(\reals^n)}^{\theta}; \forall u \in C_c^\infty(\reals^n)
 $$
 
 \begin{enumerate}
@@ -10,3 +10,59 @@ $$
 \item Prove the inequality
 \end{enumerate}
 Hint: Do an interpretation of $L^r$ in terms of $L^q$ and $L^{\frac{n p}{n - p}}$ and then apply Sobolev.
+(nb. interpretation should be interpolation)
+
+First we define $u_\lambda(x) = u(\lambda x)$, and note that
+\begin{align*}
+\int_{\reals^n} |u_\lambda|^s \dx = &\int_{\reals^n} |u(\lambda x)|^s \dx = \frac{1}{\lambda^n} \int_{\reals^n} |u(y)|^s \dy\\
+\int_{\reals^n} |D u_\lambda|^s \dx = &\int_{\reals^n} |D u(\lambda x)|^s \dx = \frac{\lambda^s}{\lambda^n} \int_{\reals^n} |D u(y)|^s \dy\\
+\end{align*}
+Then, if we assume that the $||u||_{L^r(\reals^n)} \leq C ||u||_{L^q(\reals^n)}^{1 - \theta} ||D u||_{L^p(\reals^n)}^{\theta}$
+holds for any $u \in C_c^\infty(\reals^n)$, we have
+\begin{align*}
+\frac{1}{\lambda^{n / r}} ||u||_{L^{r}(\reals^n)} \leq &C \frac{1}{\lambda^{(1 - \theta) n / q}} ||u||_{L^{q}(\reals^n)}^{1 - \theta} \frac{\lambda^{\theta}}{\lambda^{\theta n / p}} ||D u||_{L^p(\reals^n)}^\theta\\
+  = & C \lambda^{\theta - (1 - \theta) n / q - \theta n / p} ||u||_{L^{q}(\reals^n)}^{1 - \theta} ||D u||_{L^p(\reals^n)}^\theta
+\end{align*}
+Then if $n / r + \theta - (1 - \theta) n / q - \theta n / p > 0$, since $C$ is independent of $u$,
+any sequence with $\lambda \rightarrow 0$ will result in
+\begin{align*}
+C \lambda^{n / r + \theta - (1 - \theta) n / q - \theta n / p} ||u||_{L^{q}(\reals^n)}^{1 - \theta} ||D u||_{L^p(\reals^n)}^\theta \rightarrow 0
+\end{align*}
+which contradicts the requirement that
+\begin{align*}
+||u||_{L^r(\reals^n)} \leq C \lambda^{n / r + \theta - (1 - \theta) n / q - \theta n / p} ||u||_{L^{q}(\reals^n)}^{1 - \theta} ||D u||_{L^p(\reals^n)}^\theta
+\end{align*}
+for any non-zero $u \in L^r(\reals^n)$.
+Considering $n / r + \theta - (1 - \theta) n / q - \theta n / p \leq 0$,
+any sequence with $\lambda \rightarrow \infty$ will result in
+\begin{align*}
+C \lambda^{n / r + \theta - (1 - \theta) n / q - \theta n / p} ||u||_{L^{q}(\reals^n)}^{1 - \theta} ||D u||_{L^p(\reals^n)}^\theta \rightarrow 0
+\end{align*}
+causing the same contradiction.
+
+Thus, we must have $n / r + \theta - (1 - \theta) n / q - \theta n / p = 0$; or
+\begin{align*}
+\theta = &\frac{\frac{n}{q} - \frac{n}{r}}{1 + \frac{n}{q} - \frac{n}{p}}\\
+       = &\frac{p n}{r} \frac{r - q}{p q + n p - n q}
+\end{align*}
+
+Next, we show that we can choose a $C$ s.t. the original inequality holds when $\theta$ satisfies the previous.
+By the interpolation inequality, if $\frac{1}{r} = \frac{1 - \theta}{q} + \frac{\theta}{n p / (n - p)}$,
+there exists a constant $C$ s.t.
+\begin{align*}
+||u||_{L^{r}(\reals^n)} \leq C ||u||_{L^{q}(\reals^n)}^{1 - \theta} ||u||_{L^{\frac{n p}{n - p}}(\reals^n)}^{\theta}
+\end{align*}
+Happily, the relation $\frac{1}{r} = \frac{1 - \theta}{q} + \frac{\theta}{n p / (n - p)}$
+holds with our choice of $\theta$ above.
+
+Then, by the Gagliardo-Nirenberg-Sobolev inequality, since $1 \leq p < n$ and $1 \leq \frac{n p}{n - p} < \infty$,
+for some other $C$ we have
+\begin{align*}
+||u||_{L^{\frac{n p}{n - p}}(\reals^n)} \leq &C ||D u||_{L^p(\reals^n)}\\
+||u||_{L^{\frac{n p}{n - p}}(\reals^n)}^{\theta} \leq &C ||D u||_{L^p(\reals^n)}^\theta
+\end{align*}
+Thus,
+\begin{align*}
+||u||_{L^{r}(\reals^n)} \leq C ||u||_{L^{q}(\reals^n)}^{1 - \theta} ||D u||_{L^{p}(\reals^n)}^\theta
+\end{align*}
+completing our proof.
