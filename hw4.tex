@@ -32,7 +32,7 @@
 \newcommand*\rationals[0]{\mathbb{Q}}
 \newcommand*\reals[0]{\mathbb{R}}
 
-\newcommand*\domain[0]{\Omega}
+\newcommand*\domain[0]{U}
 \newcommand*\bndry[1]{\partial #1}
 \newcommand*\bndrydom[0]{\partial \domain}
 \newcommand*\compactcont[0]{\subset \subset} % U \compactcont V \rightarrow U \subset \closure{U} \subset V, where U, V are (open) domains
@@ -47,11 +47,21 @@
 \newcommand{\dz}{\dd{z}}
 \newcommand{\dr}{\dd{r}}
 \newcommand{\ds}{\dd{s}}
+\newcommand{\dS}{\dd{S}}
 \newcommand{\dt}{\dd{t}}
 \newcommand*\pderiv[2]{\frac{\partial #1}{\partial #2}}
 \newcommand*\nthpderiv[3]{\frac{\partial^{#3} #1}{\partial #2^{#3}}}
 \newcommand*\deriv[2]{\frac{\dd{#1}}{\dd{#2}}}
 \newcommand*\nthderiv[3]{\frac{\dd{^{#3} #1}}{\dd{#2^{#3}}}}
+
+\newcommand*\lnorm[3]{\left|\left|#1\right|\right|_{L^{#2}(#3)}}
+\newcommand*\lnormdom[2]{\left|\left|#1\right|\right|_{L^{#2}(\domain)}}
+
+\newcommand*\hnorm[3]{\left|\left|#1\right|\right|_{H^{#2}(#3)}}
+\newcommand*\hnormdom[2]{\left|\left|#1\right|\right|_{H^{#2}(\domain)}}
+
+\newcommand*\wnorm[4]{\left|\left|#1\right|\right|_{W^{#2, #3}(#4)}}
+\newcommand*\wnormdom[3]{\left|\left|#1\right|\right|_{W^{#2, #3}(\domain)}}
 
 \DeclareMathOperator{\res}{res}
 \DeclareMathOperator{\sign}{sign}

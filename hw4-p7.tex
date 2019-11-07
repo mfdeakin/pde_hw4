@@ -12,6 +12,19 @@
   \int_{\domain} D u \cdot D v \dx = \int_{\domain} f v \dx, \forall v \in W^{1, 2}(\domain)
   $$
 
+  Suppose that $f \in L^2(\domain)$.
+  Show that this only has a solution iff $\int_\domain f(x) \dx = 0$
+
+  If $\domain$ is bounded, then we can just take $v = 1 \in W^{1, 2}(\domain)$,
+  as $D v = 0 \rightarrow 0 = \int_\domain D u \cdot Dv = <f, v>$.
+
+  If $\domain$ is unbounded, then we note that since $u \in W^{1, 2}(\domain)$,
+  there must be some $R > 0$ with $u(B_R^C \cap \domain) = \set{0}$.
+  Then $D u(B_R^C \cap \domain) = \set{0}$.
+  If we then choose $v = 1 \in B_R$ and $v = 0 \in B_{R + 1}$ with some smooth transition,
+  we must have
+  $0 = \int_\domain D u \cdot D v \dx = \int_{\domain \cap B_R} f \dx + \int_{\domain \cap B_R^C \cap B_{R + 1}} f v \dx$
+
   \item Discuss how to define a weak solution of the Poisson equation with Robin boundary conditions
   $$
   \begin{cases}
@@ -20,4 +33,25 @@
   \end{cases}
   $$
 
+  Starting with the form of the PDE, we require that
+  $<f, v> = -\int_{\domain} \Delta u(x) v(x) \dx$.
+  Integrating by parts gives
+  \begin{align*}
+    <f, v> = &\int_{\domain} D u \cdot D v \dx - \int_{\bndrydom} \pderiv{u}{\nu} v \dS\\
+           = &\int_{\domain} D u \cdot D v \dx + \int_{\bndrydom} u v \dS
+  \end{align*}
+  with $q \in \reals$.
+  Thus, any solution to the strong problem will be a weak solution as well.
+  Next we need to show that this problem is well defined.
+
+  By the infinite differentiability up to the boundary theorem,
+  if $f \in C^\infty(\closure{\domain})$ and $\bndrydom \in C^\infty$,
+  then $u \in W^{1, 2}(\domain) \cap C(\closure{\domain})$.
+  Then by the trace theorem, if $\bndrydom \in C^1$ and $u \in W^{1, 2}(\domain) \cap C(\closure{\domain})$,
+  then $T u = u |_{\bndrydom}$ and $\lnorm{T u}{2}{\bndrydom} \leq C \wnormdom{u}{1}{2}$.
+  So if we define a bilinear operator $B[u, v] = \int_{\domain} D u \cdot D v \dx + \int_{\bndrydom} u v \dS$,
+  then $B[u, u] = \lnormdom{D u}{2}^2 + \lnorm{u}{2}{\bndrydom}^2 \leq C \wnormdom{u}{1}{2}$
+  whenever these assumptions hold.
+  We can also show that $B$ is coercive in most cases, and then Lax Millgram applies,
+  proving that this has a unique solution.
 \end{enumerate}

@@ -1,3 +1,23 @@
 Let $\domain = (-1, 1)$.
 Show that the dual space of $H^1(\domain)$ is isomorphic to $H^{-1}(\domain) + E^*$
 where $E^*$ is the two dimensional subspace of $H^1(\domain)$ spanned by the orthogonal vectors $\set{e^x, e^{-x}}$.
+
+Let $u \in H_0^1(\domain)$, $v \in H^1(\domain) \cap (H_0^1(\domain))^{\perp}$,
+with $(f, g) = \int_\domain u v + u' v' \dx$ for $f, g \in H^1(\domain)$.
+Then $(u, v) = 0 = \int_\domain u v + u' v' \dx$.
+If $v \in C^2(\domain)$, integrating by parts gives
+\begin{align*}
+  0 = &\int_\domain u v - u v'' \dx + u(1) v'(1) - u(-1) v'(-1)\\
+    = &\int_\domain u (v - v'') \dx
+\end{align*}
+Then $v$ is a weak solution to the ODE $-v'' + v = 0$.
+
+Recall that given boundary conditions, the strong form has a unique solution,
+namely $v = c_1 e^x + c_2 e^{-x}$.
+Since the solution to the strong form is a solution to the weak form,
+and solutions to this weak form are unique, this solution is the only solution to our weak form.
+Thus, if $v \in H^1(\domain)$, we must have $v = u + c_1 e^x + c_2 e^{-x}$ for some $u \in H_0^1(\domain)$,
+$c_1, c_2 \in \reals$, or equivalently, $H^1 = H_0^1 + E$.
+
+%% Then by the linearity of the dual space, $(H^1)^* = H^{-1} + E^*$.
+%% Thus, they are trivially isomorphic, with the identity operator as their isomorphism.

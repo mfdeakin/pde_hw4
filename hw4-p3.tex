@@ -13,25 +13,18 @@ Then $p \in \left[1, \frac{n p}{n - p}\right]$, so by Theorem 5.6.3 in Evans, th
 $||u||_{L^p(\domain)} \leq C ||D u||_{L^p(\domain)}$.
 This leaves us with the cases with $p \geq n$.
 
-By Poincare's inequality, we have
+Assume that the claim is false; ie for any $k \in \naturals$, we can find a $u_k$
+with $\lnormdom{u_k}{p} > k \lnormdom{D u_k}{p}$.
+Define $v_k = \frac{u_k}{\lnormdom{u_k}{p}}$; then $\lnormdom{v_k}{p} = 1 > k \lnormdom{D v_k}{p}$.
+Then $\wnormdom{v_k}{p}{1} \leq 2$, so by the compactness of $W^{k, p}(\domain)$ in $L^p(\domain)$,
+there must be a subsequence $\{ v_{k_j} \}$ and $v \in L^p(\domain)$ with $\lnormdom{v_{k_j} - v} \rightarrow 0$.
+Then by the dominated convergence theorem
 \begin{align*}
-||u - (u)_{\domain}||_{L^p(\domain)} \leq C ||D u||_{L^p(\domain)}
+  \int_{\domain} v \phi_{x_i} \dx = &\int_{\domain} \limitto{j}{\infty} v_{k_j} \phi_{x_i} \dx\\
+    = &\limitto{j}{\infty} \int_{\domain} v_{k_j} \phi_{x_i} \dx
+    = \limitto{j}{\infty} -\int_{\domain} v_{k_j, x_i} \phi \dx = 0
 \end{align*}
-
-Use BMO???
-
-By the triangle inequality, we have
-$|u|^p = |u - (u)_{\domain} + (u)_{\domain}|^p \leq (|u - (u)_{\domain}| + |(u)_{\domain}|)^p$.
-Then
-\begin{align*}
-||u||_{L^p(\domain)} \leq C ||u - (u)_{\domain}||_{L^p(\domain)}
-\end{align*}
-Since
-
-First note that since $\bndrydom \in C^1$, there exists an extension $\bar{u} \in W^{1, p}(\reals^n)$
-with $||u||_{W^{1, p}(\domain)} \leq ||\bar{u}||_{W^{1, p}(\reals)} \leq C ||u||_{W^{1, p}(\domain)}$.
-
-Then, by the Gagliardo-Nirenberg-Sobolev inequality, there exists constants $C, \bar{C}$ s.t.
-\begin{align*}
-||\bar{u}||_{L^{p}(\reals^n)} \leq \bar{C} ||D \bar{u}||_{L^{n p / (n + p)}(\reals^n)} \leq C ||D u||_{L^{n p / (n + p)}(\domain)}
-\end{align*}
+Thus, $D v = 0$ almost everywhere, implying $v$ is constant.
+Since $|\set{x | v_k(x) = 0}| \geq \alpha$, we must also have $|\set{x | v(x) = 0}| \geq \alpha >0$
+Then $v = 0$, contradicting $\lnormdom{v}{p} = 1$, and thus, that the sequence
+$\set{v_k | \lnormdom{v_k}{p} > k \lnormdom{D v_k}{p}}$ exists.

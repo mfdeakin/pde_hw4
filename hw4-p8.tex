@@ -1,5 +1,5 @@
 \begin{enumerate}
-\item Discuss the defintion of weak solutions $u \in H_0^2(\domain)$ tp
+\item Discuss the definition of weak solutions $u \in H_0^2(\domain)$ to
   $$
   \begin{cases}
     \Delta^2 u(x) = f(x) & x \in \domain\\
@@ -7,6 +7,56 @@
   \end{cases}
   $$
 
+  Consider $v \in C^2(\domain)$. Then $\int_{\domain} f v \dx = \int_{\domain} (\Delta^2 u) v \dx$.
+  Integrating by parts and noting that $u \in H_0^2(\domain) \rightarrow D^{\alpha} u = 0$ gives
+  \begin{align*}
+    \int_{\domain} f v \dx = &-\int_{\domain} D(\Delta u) \cdot D v \dx
+                             + \int_{\bndrydom} \left(\pderiv{}{\nu} \Delta u\right) v \dS\\
+                          = &-\int_{\domain} D(\Delta u) \cdot D v \dx
+                          = \int_{\domain} (\Delta u) (\Delta v) \dx
+                            - \int_{\bndrydom} \Delta u \pderiv{}{\nu} v \dS\\
+                          = &\int_{\domain} (\Delta u) (\Delta v) \dx
+  \end{align*}
+  Then any solution to the strong problem will be a solution to the above weak problem.
+  We can then define the bilinear form $B[u, v] = \int_{\domain} (\Delta u) (\Delta  v) \dx$,
+  with $B: H^2(\domain) \times H^2(\domain) \rightarrow \reals$.
+  We can use the Sobolev Inequality and a modification of the argument for Poincare's Inequality
+  to prove that this is a bounded coercive form.
+  Thus, Lax-Millgram applies, so we know that there is a unique $u \in H_0^2(\domain)$ with $B[u, v] = <f, v>$.
+
 \item Given $f \in L^2(\domain)$ prove that there exists a unique weak solution to $\Delta^2 u(x) = f(x)$.
 
+  First
+  \begin{align*}
+    |B[u, v]| = &\left| \int_{\domain} (\Delta u) (\Delta v) \dx \right|\\
+           \leq &\int_{\domain} |\Delta u| |\Delta v| \dx
+           \leq C \lnormdom{\Delta u}{2} \lnormdom{\Delta v}{2}\\
+           \leq &C \hnormdom{u}{2} \hnormdom{v}{2}
+  \end{align*}
+  Thus, $B$ is a bounded bilinear form.
+
+  Next, we need to show that $B$ is coercive, i.e. that there is a constant $C$ s.t.
+  $\hnormdom{u}{2} \leq C B[u, u]$.
+
+  If $n \geq 3$, we can apply Evans 5.6.3, so
+  \begin{align*}
+    \hnormdom{u}{2}^2 = &\int_{\domain} u^2 \dx + \int_{\domain} |D u|^2 \dx + \int_{\domain} |\Delta u|^2 \dx\\
+                   \leq & C \int_{\domain} |D u|^2 \dx + \int_{\domain} |\Delta u|^2 \dx\\
+                   \leq & C \int_{\domain} |\Delta u|^2 \dx = C B[u, u]
+  \end{align*}
+  Otherwise, assume that there is a sequence $\set{u_k}$ with $\hnormdom{u_k}{2}^2 > k B[u_k u_k]$.
+  Note that $u_k \neq 0$, as otherwise the above inequality does not hold.
+  Then since $B$ is linear, we can assume that $\hnormdom{u_k}{2} = 1$.
+  Then
+  \begin{align*}
+    0 = &\limitto{k}{\infty} \frac{1}{k} > \limitto{k}{\infty} \lnormdom{\Delta u_k}{2}^2\\
+    0 = \limitto{k}{\infty} \Delta u_k = \Delta u
+  \end{align*}
+  Then (as shown in a previous homework) $D u$ is constant in $\domain$.
+  But $D u = 0$ on $\bndrydom$, so $D u = 0$ everywhere.
+  Then by the same argument, $u = 0$ everywhere, contradicting our assumption.
+
+  Thus, $B$ is coercive and bounded, so Lax-Millgram applies,
+  proving that there is a unique $u \in H_0^2(\domain)$ s.t. $B[u, v] = <f, v>$
+  whenever $v \in C^\infty(\domain)$.
 \end{enumerate}
