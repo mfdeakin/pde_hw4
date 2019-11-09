@@ -1,10 +1,79 @@
 \begin{enumerate}
 \item Show that $W^{1, 2}(\reals^N) \subset L^2(\reals^N)$ is not compact.
 
+  First define $\domain = \reals^n$.
+
+  Then given a nonzero $u \in W^{2, 2}(\domain)$, define $u_k(x_1, x_2, \ldots, x_n) = u(x_1 - k, x_2, \ldots, x_n)$.
+  $\set{u_k}$ does not have a subsequence $\set{u_{k_j}}$ with
+  $\limitto{j}{\infty} \lnorm{u_{k_j} - v}{2}{\domain} = 0$ for any $v$,
+  while $\lnorm{u_k}{2}{\domain} = \lnorm{u}{2}{\domain} < \infty$.
+
+  Given an $0 < 2 \epsilon < \wnorm{u}{2}{2}{\domain}$,
+  consider any $v$ s.t. a given $u_k$, $\lnorm{u_k - v}{2}{\domain} < \epsilon$.
+  Since $u_k \in W^{1, 2}(\domain)$, it has compact support, so there is an $R > 0$ with $u_k(\ball{R}{0}^C) = \set{0}$.
+  Then
+  \begin{align*}
+    \epsilon > &\lnorm{u_k - v}{2}{\domain}^2 = \int_{\ball{R}{0}} |u_k - v|^2 \dx + \int_{\ball{R}{0}^C} |v|^2 \dx
+          \geq \int_{\ball{R}{0}^C} |v|^2 \dx
+  \end{align*}
+  Next, we can choose given any subsequence $\set{u_{k_j}}$,
+  we can choose a $J$ s.t. $\forall j \geq J$, $k_j > 2 R$.
+  These $u_{k_j}$ have compact support in a region excluding $\ball{R}{0}$.
+  We compute
+  \begin{align*}
+    \left| \int_{\ball{R}{0}} |v|^2 \dx - \int_{\ball{R}{0}} |u_k|^2 \dx \right|
+      \leq &\int_{\ball{R}{0}} |u_k - v|^2 \dx < \epsilon\\
+    -\epsilon + \int_{\ball{R}{0}} |u_k|^2 \dx < &\int_{\ball{R}{0}} |v|^2 \dx\\
+    \epsilon < &\int_{\ball{R}{0}} |v|^2 \dx\\
+    \lnorm{u_{k_j} - v}{2}{\domain}^2 = &\int_{\ball{R}{0}} |v|^2 \dx + \int_{\ball{R}{0}^C} |u_{k_j} - v|^2 \dx\\
+      > &\epsilon + \int_{\ball{R}{0}^C} |u_{k_j} - v|^2 \dx > \epsilon
+  \end{align*}
+  showing that we can never choose a $J$ with $\lnorm{u_{k_j} - v}{2}{\domain}^2 < \epsilon$ for all $j \geq J$
+
+  Thus, $W^{1, 2}(\domain)$ is not compactly contained in $L^2(\domain)$.
+
 \item Let $n > 4$
   Show that the embedding $W^{2, 2}(\domain) \rightarrow L^{\frac{2 n}{n - 4}}(\domain)$ is not compact.
 
+  Given a non-negative $u \in W^{2, 2}(\domain)$ with finite $\wnormdom{u}{2}{2}$ and $\lnormdom{u}{2}$,
+  define $u_\lambda = \lambda^\theta u(\frac{x}{\lambda})$.
+  Then
+  \begin{align*}
+    \wnormdom{u_\lambda}{2}{2}^2 = &\lambda^{2 \theta - n} \int_\domain u^2 \dx
+                                + \lambda^{2 \theta - n - 2} \int_\domain |D u|^2 \dx
+                                + \lambda^{2 \theta - n - 4} \int_\domain |D^2 u|^2 \dx
+  \end{align*}
+  Then if we choose $\theta$ such that $2 \theta - n \leq 0$, this remains bounded as $\lambda \rightarrow \infty$.
+  However, the $L^{\frac{2 n}{n - 4}}(\domain)$ norm does not necessarily remain bounded:
+  \begin{align*}
+    \lnormdom{u_\lambda}{\frac{2 n}{n - 4}}^2 = &\lambda^{\frac{2 n}{n - 4} \theta - n} \int_\domain u^2 \dx\\
+    0 \geq &\frac{2 n}{n - 4} \theta - n = \frac{(2 \theta - n + 4) n}{n - 4}\\
+    0 \geq &2 \theta - n + 4
+  \end{align*}
+  Choosing $n - 4 < 2 \theta < n$ gives a sequence which is unbounded in the $L^{\frac{2 n}{n - 4}}(\domain)$ space,
+  but bounded and convergent to $0$ in  the $W^{2, 2}(\domain)$ space.
+  This violates $\lnormdom{u_\lambda}{\frac{2 n}{n - 4}} \leq C \wnormdom{u_\lambda}{2}{2}$,
+  since for any $C$, we can increase $\lambda$ s.t. the previous no longer holds,
+  proving that there is not a compact embedding.
+
+  Also, for any $v \in L^{\frac{2 n}{n - 4}}(\domain)$, we have
+  \begin{align*}
+    \infty = &\limitto{\lambda}{\infty} \left| \lnormdom{u_\lambda}{\frac{2 n}{n - 4}}
+                                               - \lnormdom{v}{\frac{2 n}{n - 4}} \right|
+        \leq \limitto{\lambda}{\infty} \lnormdom{|u_\lambda| - |v|}{\frac{2 n}{n - 4}}\\
+        \leq &\limitto{\lambda}{\infty} \lnormdom{u_\lambda - v}{\frac{2 n}{n - 4}}
+  \end{align*}
+  Since this is true for any sequence with $\lambda \rightarrow \infty$,
+  $W^{2, 2}(\domain)$ cannot be compactly contained in $L^{\frac{2 n}{n - 4}}(\domain)$.
 \item Describe the embedding of $W^{3, p}(\domain)$ in different dimensions.
   State if the embedding is continuous or compact.
+
+  By the Rellich-Kondrachov Compactness theorem, whenever $1 \leq p < n$,
+  $W^{3, p}(\domain)$ is compactly contained in $L^{q}(\domain)$ for $1 \leq q < \frac{n p}{n - p}$.
+  Then by the General Sobolev inequality, if $3 < \frac{n}{p}$ and $\frac{1}{q} = \frac{1}{p} - \frac{3}{n}$,
+  the embedding is continuous.
+
+  7 cases, 2 borderline cases, $n = 3$, compact embedding, rest are cases from the Sobolev inequality
+  and Morrey's inequality.
 
 \end{enumerate}

@@ -1,11 +1,47 @@
 \begin{enumerate}
-\item Let $u \in W_r^{1, 2} \subset H_r^1 = \set{u \in W^{1, 2}(\reals^n) | u = u(r)}$.
-  Show that $|u(r)| \leq C ||u||_{W^{1, 2}} r^{\frac{1 - n}{2}}$.
+\item Let $u \in W_r^{1, 2}(\reals^n) \subset H_r^1(\reals^n) = \set{u \in W^{1, 2}(\reals^n) | u = u(r)}$.
+  Show that $|u(r)| \leq C \wnorm{u}{1}{2}{\reals^n} r^{\frac{1 - n}{2}}$.
+
+  First define $u(x) = f(|x|)$.
+  Note that $\pderiv{}{x_i} u(x) = f'(|x|) \frac{x_i}{|x|}$.
+  Next, we consider $\deriv{}{r} [r^{2 m} f^2(r)]$
+  and compare it to $[\deriv{}{r} (r^m f(r))]^2 + (r^m f(r))^2$:
+  \begin{align*}
+    \deriv{}{r} [r^{2 m} f^2(r)] = &r^{2 m - 1} f^2(r) + r^{2 m} f(r) f'(r)\\
+    [(r^m f(r))']^2 + (r^m f(r))^2 = &r^{2 m} [(f'(r))^2 + f^2(r)] + m \deriv{}{r} (r^{2 m - 1} f^2(r))
+                                     - m (m - 1) r^{2 m - 2} f^2(r)\\
+    0 \leq &\left[ \deriv{}{r}(r^m f(r)) \right]^2 + (r^m f(r))^2 - \deriv{}{r} [r^{2 m} f^2(r)]\\
+           = &r^{2 m} [f(r) - f'(r)]^2 + m r^{2 m - 2} ((m - 2 r) f^2(r) + 2 r f(r) f'(r))\\
+           = &r^{2 m - 2} [-m f(r) + r f(r) - r f'(r)]^2
+  \end{align*}
+  The last equation shows the inequality is true, since $r > 0$ and $[-m f(r) + r f(r) - r f'(r)]^2 > 0$.
+  Thus, $\deriv{}{r} (r^{2 m} f^2(r)) \leq [\deriv{}{r}(r^m f(r))]^2 + (r^m f(r))^2$.
+
+  Next, we apply compact support of our function with the fundamental theorem of calculus and
+  triangle inequality to put an upper bound on the pointwise value of the function.
+  When $m = \frac{n - 1}{2}$, $n \geq 3$, we have
+  \begin{align*}
+    r^{2 m} f(r)^2 = &\left|\int_{r}^{\infty} \deriv{}{s} [s^{2 m} f(s)] \ds \right|\\
+               %% \leq \int_{r}^{\infty} \left| \deriv{}{s} [s^{2 m} f(s)] \right| \ds\\
+               %% \leq &\int_{r}^{\infty} \left| \left[ \deriv{}{s}(s^m f(s)) \right]^2 + (s^m f(s))^2 \right| \ds\\
+               %% \leq &\int_{r}^{\infty} \left| \left[ \deriv{}{s}(s^m f(s)) \right]^2 + (s^m f(s))^2 \right| \ds\\
+               %% \leq &\int_{r}^{\infty} \left[ \deriv{}{s}(s^m f(s)) \right]^2 \ds
+               %%       + \int_{r}^{\infty} (s^m f(s))^2 \ds\\
+               \leq &\int_{r}^{\infty} \left[ \deriv{}{s}(s^m f(s)) \right]^2 \ds
+                     + \int_{r}^{\infty} (s^m f(s))^2 \ds\\
+               \leq &\frac{1}{n \alpha_n} \wnorm{f(s)}{1}{2}{\reals^n}^2
+  \end{align*}
+  Then $|u(x)| = |f(r)| \leq \frac{C}{r^{\frac{n - 1}{2}}} \wnorm{u(x)}{1}{2}{\reals^n}$,
+  completing our proof.
 
 \item Show that for $n \geq 2$, the embedding $W_r^{1, 2} \subset L^p$ is compact when $2 < p < \frac{2 n}{n - 2}$.
 
+  First, recall that $W^{1, 2}(\reals^n) = W_C^{1, 2}(\reals^n)$.
+  Then consider any sequence $\set{u_k} \subset W_r^{1, 2}(\reals^n)$ with $\wnorm{u_k}{1}{2}{\reals^n} < C$.
+
 \item Let $u = D_r^{1, 2} = \set{\int |\nabla u|^2 \dx < \infty | u = u(r)}$.
-  Show that $D_r^{1, 2} \subset L^{\frac{2 n}{n - 2}}$ and $|u(r)| \leq C ||\nabla u||_{L^2} r^{\frac{2 - n}{2}}$.
-    However show that $D_r^{1, 2} \subset L^{\frac{2 n}{n - 2}}$ is not compact.
+  Show that $D_r^{1, 2} \subset L^{\frac{2 n}{n - 2}}$ and $|u(r)| \leq C \lnorm{D u}{2}{} r^{\frac{2 - n}{2}}$.
+  However show that $D_r^{1, 2} \subset L^{\frac{2 n}{n - 2}}$ is not compact.
+
 \end{enumerate}
 
